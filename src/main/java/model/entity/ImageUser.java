@@ -11,6 +11,7 @@ public class ImageUser {
     private int status;
 
     private String urlImg;
+
     @ManyToOne
     private User userId;
 

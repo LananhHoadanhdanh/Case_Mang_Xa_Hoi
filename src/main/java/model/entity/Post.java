@@ -12,27 +12,22 @@ public class Post {
     private String content;
     private Date datePost;
     private int status;
-    private int view;
+
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
 
-
     @OneToMany(mappedBy = "postId", fetch = FetchType.EAGER)
     private List<Image> imgs;
-
-
 
     public Post() {
     }
 
-    public Post(String content, Date datePost, int status, int view, User user, List<Image> imgs) {
+    public Post(String content, Date datePost, int status, User user, List<Image> imgs) {
         this.content = content;
         this.datePost = datePost;
         this.status = status;
-        this.view = view;
         this.user = user;
-
         this.imgs = imgs;
     }
 
@@ -68,15 +63,6 @@ public class Post {
         this.datePost = datePost;
     }
 
-
-    public int getView() {
-        return view;
-    }
-
-    public void setView(int view) {
-        this.view = view;
-    }
-
     public User getUser() {
         return user;
     }
@@ -84,7 +70,6 @@ public class Post {
     public void setUser(User user) {
         this.user = user;
     }
-
 
     public List<Image> getImgs() {
         return imgs;

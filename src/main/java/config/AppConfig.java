@@ -35,8 +35,6 @@ import service.like.ILikeService;
 import service.like.LikeService;
 import service.post.IPostService;
 import service.post.PostService;
-import service.role.IRoleService;
-import service.role.RoleService;
 import service.user.IUserService;
 import service.user.UserService;
 
@@ -147,11 +145,6 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public IPostService postService(){
         return new PostService();
-    }
-
-    @Bean
-    public IRoleService roleService(){
-        return new RoleService();
     }
 
     @Bean
