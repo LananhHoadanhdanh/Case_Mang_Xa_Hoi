@@ -93,7 +93,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("product.model"); // cung cấp vị trí các model mà EntityManager cần tạo
+        em.setPackagesToScan("model"); // cung cấp vị trí các model mà EntityManager cần tạo
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -105,7 +105,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver"); // loại driver đang dùng
-        dataSource.setUrl("jdbc:mysql://localhost:3306/thi_thuc_hanh_module_3"); // csdl đang dùng
+        dataSource.setUrl("jdbc:mysql://localhost:3306/social_web"); // csdl đang dùng
         dataSource.setUsername("root"); // tài khoản sql
         dataSource.setPassword("123456"); // mật khẩu sql
         return dataSource;
