@@ -27,6 +27,7 @@ public class Post {
         this.content = content;
         this.datePost = datePost;
         this.status = status;
+        //1 là công khai, 2 là bạn bè, 3 là riêng tư.
         this.user = user;
         this.imgs = imgs;
     }
