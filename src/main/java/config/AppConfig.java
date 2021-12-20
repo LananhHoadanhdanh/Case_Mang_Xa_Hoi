@@ -43,14 +43,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@Configuration // đánh đấu đây là file cấu hình dự án Spring
-@EnableWebMvc // đánh dấu dự án này hỗ trợ mô hình MVC
-@EnableTransactionManagement // đánh dấu dự án có hỗ trợ transaction
-@EnableJpaRepositories("repository") // đánh dấu dự án có sử dụng jpa repository và đường dẫn
-@ComponentScan("controller")// cho Spring biết phải tìm controller ở đâu
+@Configuration
+@EnableWebMvc
+@EnableTransactionManagement
+@EnableJpaRepositories("repository")
+@ComponentScan("controller")
 public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
-    private ApplicationContext applicationContext; // khai báo 1 Spring Container
+    private ApplicationContext applicationContext;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -62,10 +62,10 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views/"); // tiền tố
-        templateResolver.setSuffix(".html"); // hậu tố
-        templateResolver.setTemplateMode(TemplateMode.HTML); // kiểu views
-        templateResolver.setCharacterEncoding("UTF-8"); // định dạng chữ
+        templateResolver.setPrefix("/WEB-INF/views/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
     }
     @Bean
@@ -78,7 +78,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setCharacterEncoding("UTF-8");// định dạng chữ
+        viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
     }
 
@@ -93,7 +93,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("product.model"); // cung cấp vị trí các model mà EntityManager cần tạo
+        em.setPackagesToScan("model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -104,10 +104,10 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver"); // loại driver đang dùng
-        dataSource.setUrl("jdbc:mysql://localhost:3306/social_web"); // csdl đang dùng
-        dataSource.setUsername("root"); // tài khoản sql
-        dataSource.setPassword("123456"); // mật khẩu sql
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/social_web");
+        dataSource.setUsername("root");
+        dataSource.setPassword("123456");
         return dataSource;
     }
 
@@ -120,8 +120,8 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     public Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "update"); // hỗ trợ upload cấu trúc bảng
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect"); // loại csdl là MySQL5
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }
 

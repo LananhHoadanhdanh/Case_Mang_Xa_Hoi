@@ -1,6 +1,6 @@
 package model.entity;
 
-import com.sun.istack.internal.NotNull;
+
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
@@ -14,18 +14,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+//    @NotNull
 //    @Size(min = 2, max = 30, message = "độ dài ít nhất là 2 và không vượt quá 30 kí tự")
     @Column(unique = true, nullable = false)
     private String username;
 
     @Column(length = 8, nullable = false)
-    @NotNull
+//    @NotNull
 //    @Min(value = 8, message = "Password phải từ 8 kí tự trở lên")
     private String password;
 
     @Column(nullable = false)
-    @NotNull
+//    @NotNull
     private String fullName;
 
     private String address;
