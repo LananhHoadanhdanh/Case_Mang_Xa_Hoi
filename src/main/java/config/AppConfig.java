@@ -1,5 +1,6 @@
 package config;
 
+import formatter.UserFormatter;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -125,16 +126,15 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return properties;
     }
 
-    // cấu hình formatter
-//    @Override
-//    public void addFormatters(FormatterRegistry registry) {
-//        registry.addFormatter(new ProvinceFormatter(applicationContext.getBean(ProvinceService.class)));
-//        registry.addConverter(new DateConverter());
-//    }
+//     cấu hình formatter
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new UserFormatter(applicationContext.getBean(IUserService.class)));
+    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry .addResourceHandler("/**") .addResourceLocations("/assets/");
+        registry .addResourceHandler("/**") .addResourceLocations("");
     }
 
     @Bean
