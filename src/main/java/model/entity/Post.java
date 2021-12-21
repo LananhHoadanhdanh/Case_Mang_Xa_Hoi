@@ -22,11 +22,10 @@ public class Post {
     public Post() {
     }
 
-    public Post(String content, int status, String image, User user) {
+    public Post(String content, int status, String image) {
         this.content = content;
         this.status = status;
         this.image = image;
-        this.user = user;
         this.dateTime = LocalDateTime.now();
     }
 
