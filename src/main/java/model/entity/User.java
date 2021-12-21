@@ -4,8 +4,10 @@ package model.entity;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -41,12 +43,11 @@ public class User {
     @OneToMany
     private List<ImageUser> imgUrl;
 
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     public User() {
     }
-
-    public User(String username, String password, String fullName, String address, String email, String numberPhone, String gender, List<ImageUser> imgUrl, Date dateOfBirth) {
+    public User(String username, String password, String fullName, String address, String email, String numberPhone, String gender, List<ImageUser> imgUrl, LocalDate dateOfBirth) {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
@@ -136,11 +137,11 @@ public class User {
         this.imgUrl = imgUrl;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 }

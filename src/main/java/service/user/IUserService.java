@@ -11,4 +11,6 @@ public interface IUserService extends IGeneralService<User>{
     Optional<User> findByFullName(String fullName);
 
     Iterable<User> findAllByFullNameContaining(String fullName);
+
+    Optional<User> findByEmailAndPassword(String email,String password);
 }

@@ -14,4 +14,5 @@ public interface IUserRepository extends JpaRepository<User, Long> {
     @Query("select u from User u where u.fullName like ?1")
     Optional<User> findByFullName(String fullName);
     Iterable<User> findAllByFullNameContaining(String fullName);
+    Optional<User> findByEmailAndPassword(String email,String password);
 }

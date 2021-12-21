@@ -1,5 +1,6 @@
 package config;
 
+import formatter.TimeFormatter;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -134,7 +135,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry .addResourceHandler("/**") .addResourceLocations("/assets/");
+        registry .addResourceHandler("/**") .addResourceLocations("");
     }
 
     @Bean
@@ -170,5 +171,9 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public ICommentService commentService() {
         return new CommentService();
+    }
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new TimeFormatter());
     }
 }
