@@ -6,10 +6,10 @@
     <meta name="description" content="This is social network html5 template available in themeforest......"/>
     <meta name="keywords" content="Social Network, Social Media, Make Friends, Newsfeed, Profile Page"/>
     <meta name="robots" content="index, follow"/>
-    <title>Nearby People | Find Local People</title>
+    <title>Friend List | Your Friend List</title>
 
     <!-- Stylesheets
-    ================================================= -->
+================================================= -->
     <link rel="stylesheet" href="../../../css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../../css/style.css"/>
     <link rel="stylesheet" href="../../../css/ionicons.min.css"/>
@@ -108,7 +108,7 @@
                 <form class="navbar-form navbar-right hidden-sm">
                     <div class="form-group">
                         <i class="icon ion-android-search"></i>
-                        <input type="text" class="form-control" placeholder="Search friends, photos, videos"/>
+                        <input type="text" class="form-control" placeholder="Search friends, photos, videos">
                     </div>
                 </form>
             </div><!-- /.navbar-collapse -->
@@ -220,87 +220,38 @@
                     </div>
                 </div><!-- Post Create Box End -->
 
-                <!-- Nearby People List
+                <!-- Friend List
                 ================================================= -->
-                <div class="people-nearby">
-                    <div class="google-maps">
-                        <div id="map" class="map"></div>
+                <div class="friend-list">
+                    <div class="row">
+                        <th:block th:each="f : ${friendS}">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="friend-card">
+                                    <img src="http://placehold.it/1030x360" alt="profile-cover"
+                                         class="img-responsive cover"/>
+                                    <div class="card-info">
+                                        <th:block th:each="if : ${imgFriend}">
+                                            <img th:if="${if.userId.id} == ${f.getUser().id}" th:src="@{${if.urlImg}}"
+                                                 alt="user" class="profile-photo-lg"/>
+                                        </th:block>
+                                        <div class="friend-info ">
+                                            <button class="pull-right">Delete</button>
+                                            <button class="pull-right">Add</button>
+                                            <h5><a href="timeline.html" class="profile-link"
+                                                   th:text="${f.getUser().fullName}"></a>
+                                            </h5>
+                                            <p>Student at Harvard</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </th:block>
                     </div>
-                    <th:block th:each="fr : ${isFriend}">
-                        <div class="nearby-user">
-                            <div class="row">
-                                <div class="col-md-2 col-sm-2">
-                                    <th:block th:each="if : ${imgFriend}">
-                                        <img th:if="${if.userId.id} == ${fr.id}" th:src="@{${if.urlImg}}" alt="user"
-                                             class="profile-photo-lg"/>
-                                    </th:block>
-                                </div>
-                                <div class="col-md-7 col-sm-7">
-                                    <h5><a href="#" class="profile-link"><p th:text="${fr.getFullName()}"></p></a></h5>
-                                    <p>Software Engineer</p>
-                                    <p class="text-muted">500m away</p>
-                                </div>
-                                <div class="col-md-3 col-sm-3">
-                                    <form action="/unFriend">
-                                        <input type="hidden" name="idFriend" th:value="${fr.id}">
-                                        <button class="btn btn-primary pull-right">My Friend</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </th:block>
-                    <th:block th:each="fr : ${waiting}">
-                        <div class="nearby-user">
-                            <div class="row">
-                                <div class="col-md-2 col-sm-2">
-                                    <th:block th:each="if : ${imgFriend}">
-                                        <img th:if="${if.userId.id} == ${fr.id}" th:src="@{${if.urlImg}}" alt="user"
-                                             class="profile-photo-lg"/>
-                                    </th:block>
-                                </div>
-                                <div class="col-md-7 col-sm-7">
-                                    <h5><a href="#" class="profile-link"><p th:text="${fr.getFullName()}"></p></a></h5>
-                                    <p>Software Engineer</p>
-                                    <p class="text-muted">500m away</p>
-                                </div>
-                                <div class="col-md-3 col-sm-3">
-                                    <form action="/unWaiting">
-                                        <input type="hidden" name="idFriend" th:value="${fr.id}">
-                                        <button class="btn btn-primary pull-right">Waiting</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </th:block>
-                    <th:block th:each="fr : ${notIsFriend}">
-                        <div class="nearby-user">
-                            <div class="row">
-                                <div class="col-md-2 col-sm-2">
-                                    <th:block th:each="if : ${imgFriend}">
-                                        <img th:if="${if.userId.id} == ${fr.id}" th:src="@{${if.urlImg}}" alt="user"
-                                             class="profile-photo-lg"/>
-                                    </th:block>
-                                </div>
-                                <div class="col-md-7 col-sm-7">
-                                    <h5><a href="#" class="profile-link"><p th:text="${fr.getFullName()}"></p></a></h5>
-                                    <p>Software Engineer</p>
-                                    <p class="text-muted">500m away</p>
-                                </div>
-                                <div class="col-md-3 col-sm-3">
-                                    <form action="/AddFriend" method="get">
-                                        <input type="hidden" name="idFriend" th:value="${fr.id}">
-                                        <button class="btn btn-primary pull-right">Add Friend</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </th:block>
-
                 </div>
             </div>
 
             <!-- Newsfeed Common Side Bar Right
-             ================================================= -->
+      ================================================= -->
             <div class="col-md-2 static">
                 <div class="suggestions" id="sticky-sidebar">
                     <h4 class="grey">Who to Follow</h4>
@@ -416,8 +367,6 @@
 
 <!-- Scripts
 ================================================= -->
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTMXfmDn0VlqWIyoOxK8997L-amWbUPiQ&callback=initMap"></script>
 <script src="../../../js/jquery-3.1.1.min.js"></script>
 <script src="../../../js/bootstrap.min.js"></script>
 <script src="../../../js/jquery.sticky-kit.min.js"></script>
