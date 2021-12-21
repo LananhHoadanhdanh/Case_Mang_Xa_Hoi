@@ -15,10 +15,10 @@
 		<link rel="stylesheet" href="css/ionicons.min.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
     <link href="css/emoji.css" rel="stylesheet">
-    
+
     <!--Google Font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
-    
+
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
 	</head>
@@ -54,12 +54,12 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Newsfeed <span><img src="images/down-arrow.png" alt="" /></span></a>
                 <ul class="dropdown-menu newsfeed-home">
-                  <li><a href="newsfeed.html">Newsfeed</a></li>
-                  <li><a href="newsfeed-people-nearby.html">Poeple Nearly</a></li>
-                  <li><a href="newsfeed-friends.html">My friends</a></li>
-                  <li><a href="newsfeed-messages.html">Chatroom</a></li>
-                  <li><a href="newsfeed-images.html">Images</a></li>
-                  <li><a href="newsfeed-videos.html">Videos</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed.html">Newsfeed</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed-people-nearby.html">Poeple Nearly</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed-friends.html">My friends</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed-messages.html">Chatroom</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed-images.html">Images</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed-videos.html">Videos</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -81,12 +81,12 @@
                 <ul class="dropdown-menu page-list">
                   <li><a href="WEB-INF/views/index.html">Landing Page 1</a></li>
                   <li><a href="index-register.html">Landing Page 2</a></li>
-                  <li><a href="newsfeed.html">Newsfeed</a></li>
-                  <li><a href="newsfeed-people-nearby.html">Poeple Nearly</a></li>
-                  <li><a href="newsfeed-friends.html">My friends</a></li>
-                  <li><a href="newsfeed-messages.html">Chatroom</a></li>
-                  <li><a href="newsfeed-images.html">Images</a></li>
-                  <li><a href="newsfeed-videos.html">Videos</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed.html">Newsfeed</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed-people-nearby.html">Poeple Nearly</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed-friends.html">My friends</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed-messages.html">Chatroom</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed-images.html">Images</a></li>
+                  <li><a href="WEB-INF/views/newfeed/newsfeed-videos.html">Videos</a></li>
                   <li><a href="timeline.html">Timeline</a></li>
                   <li><a href="timeline-about.html">Timeline About</a></li>
                   <li><a href="timeline-album.html">Timeline Album</a></li>
@@ -167,27 +167,63 @@
 
               <!-- Post Create Box
               ================================================= -->
-              <div class="create-post">
-                <div class="row">
-                  <div class="col-md-7 col-sm-7">
-                    <div class="form-group">
-                      <img src="http://placehold.it/300x300" alt="" class="profile-photo-md" />
-                      <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
+                <div class="create-post">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <img src="http://placehold.it/300x300" alt="" class="profile-photo-md"/>
+                                <textarea name="texts" id="exampleTextarea" cols="40" rows="1" class="form-control"
+                                          placeholder="Write what you wish"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="tools">
+                                <select name="status" id="status">
+                                    <option value="1">&#xf0ac;  Public</option>
+                                    <option value="2">&#xf0c0;  Friend</option>
+                                    <option value="3">&#xf023;  Private</option>
+                                </select>
+                                &ensp;
+                                <ul class="publishing-tools list-inline">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#exampleModal">
+                                        <i class="ion-images"></i>
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <center>
+                                                    <div class="modal-body">
+                                                        <p><input type="text" name="img1" style="width: 400px">&ensp;Your
+                                                            image</p>
+                                                    </div>
+                                                </center>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  &ensp;
+                                    <button class="btn btn-primary pull-right">Publish</button>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-md-5 col-sm-5">
-                    <div class="tools">
-                      <ul class="publishing-tools list-inline">
-                        <li><a href="#"><i class="ion-compose"></i></a></li>
-                        <li><a href="#"><i class="ion-images"></i></a></li>
-                        <li><a href="#"><i class="ion-ios-videocam"></i></a></li>
-                        <li><a href="#"><i class="ion-map"></i></a></li>
-                      </ul>
-                      <button class="btn btn-primary pull-right">Publish</button>
-                    </div>
-                  </div>
                 </div>
-              </div><!-- Post Create Box End-->
+              <!-- Post Create Box End-->
 
               <!-- Post Content
               ================================================= -->
@@ -415,7 +451,7 @@
         <p>Thunder Team © 2016. All rights reserved</p>
       </div>
 		</footer>
-    
+
     <!--preloader-->
     <div id="spinner-wrapper">
       <div class="spinner"></div>

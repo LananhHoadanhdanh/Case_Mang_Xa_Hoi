@@ -2360,4 +2360,7 @@ ul.contact li i{
   z-index: 9999999;
 }
 
-
+select {
+    font-family: 'FontAwesome', 'Second Font name';
+    font-size: 16px;
+}
