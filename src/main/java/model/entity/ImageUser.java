@@ -13,6 +13,7 @@ public class ImageUser {
     private String urlImg;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User userId;
 
     public ImageUser() {
