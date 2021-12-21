@@ -46,4 +46,10 @@ public class UserService implements IUserService {
     public Iterable<User> findAllByFullNameContaining(String fullName) {
         return userRepository.findAllByFullNameContaining(fullName);
     }
+
+    @Override
+    public Optional<User> findByEmailAndPassword(String email, String password) {
+        return userRepository.findByEmailAndPassword(email,password);
+    }
+
 }
