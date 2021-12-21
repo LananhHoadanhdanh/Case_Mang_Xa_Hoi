@@ -31,9 +31,9 @@ public class LoginController {
         Optional<User> user1 = userService.findByEmailAndPassword(email, password);
         ModelAndView modelAndView;
         if (user1.isPresent()) { // kiểm tra xem dữ liệu có null không
-             modelAndView = new ModelAndView("contact");
+             modelAndView = new ModelAndView("newsfeed/newsfeed");
             httpSession.setAttribute("user",user1.get());
-            modelAndView.addObject("user1",user1);
+            modelAndView.addObject("user1",user1.get());
         } else {
             modelAndView = new ModelAndView("login");
         }
@@ -55,4 +55,5 @@ public class LoginController {
         modelAndView.addObject("user",user1);
         return modelAndView;
     }
+
 }

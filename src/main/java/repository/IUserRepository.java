@@ -13,6 +13,7 @@ public interface IUserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
     @Query("select u from User u where u.fullName like ?1")
     Optional<User> findByFullName(String fullName);
+    User findUserById(Long idU);
     Iterable<User> findAllByFullNameContaining(String fullName);
     Optional<User> findByEmailAndPassword(String email,String password);
 }

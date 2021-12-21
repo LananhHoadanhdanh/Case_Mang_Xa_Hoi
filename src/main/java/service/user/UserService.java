@@ -52,4 +52,9 @@ public class UserService implements IUserService {
         return userRepository.findByEmailAndPassword(email,password);
     }
 
+    @Override
+    public User findUserById(Long idU) {
+        return userRepository.findUserById(idU);
+    }
+
 }

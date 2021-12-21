@@ -1,6 +1,7 @@
 package service.friend;
 
 import model.entity.Friend;
+import org.springframework.data.repository.query.Param;
 import service.IGeneralService;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface IFriendService extends IGeneralService<Friend> {
     public Friend findFriendByIdUserAndIdFriendOfUser1(Long idUs, Long idF);
     public List<Friend> findAllFriendByIdFr(Long id);
     public Friend findFriendByUserIdAndIdFriendOfUser(Long userId, Long idUserFriend);
+    public List<Friend> findAllFriend(Long idF);
 }

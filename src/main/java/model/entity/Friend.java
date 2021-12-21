@@ -1,6 +1,7 @@
 package model.entity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -10,7 +11,7 @@ public class Friend {
     private Long id;
 
     @Column(nullable = false)
-    private Date createAt;
+    private LocalDateTime createAt;
 
     @Column(nullable = false)
     private int status;
@@ -25,11 +26,18 @@ public class Friend {
     public Friend() {
     }
 
-    public Friend(Date createAt, int status, User user, Long idFriendOfUser) {
+    public Friend(LocalDateTime createAt, int status, User user, Long idFriendOfUser) {
         this.createAt = createAt;
         this.status = status;
         this.user = user;
         this.idFriendOfUser = idFriendOfUser;
+    }
+
+    public Friend(LocalDateTime createAt, int status, Long idFriendOfUser, User user) {
+        this.createAt = createAt;
+        this.status = status;
+        this.idFriendOfUser = idFriendOfUser;
+        this.user = user;
     }
 
     public Long getId() {
@@ -40,11 +48,11 @@ public class Friend {
         this.id = id;
     }
 
-    public Date getCreateAt() {
+    public LocalDateTime getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(Date createAt) {
+    public void setCreateAt(LocalDateTime createAt) {
         this.createAt = createAt;
     }
 
