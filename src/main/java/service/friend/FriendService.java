@@ -66,4 +66,9 @@ public class FriendService implements IFriendService {
         return friendRepository.findFriendByUserIdAndIdFriendOfUser(userId, idUserFriend);
     }
 
+    @Override
+    public List<Friend> findAllFriend(Long idF) {
+        return friendRepository.findAllFriend(idF);
+    }
+
 }
