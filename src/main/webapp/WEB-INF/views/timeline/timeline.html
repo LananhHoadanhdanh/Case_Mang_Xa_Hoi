@@ -265,11 +265,10 @@
                                                    onclick="return confirm('Are you sure?')"><i
                                                         class="fas fa-trash-alt"></i></a>
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#exampleModal1">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#exampleModal'+ ${post.id}" >
                                                     <i class="fas fa-cogs"></i></button>
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal1" tabindex="-1"
+                                                <div class="modal fade" th:id="'exampleModal'+ ${post.id}" tabindex="-1"
                                                      aria-labelledby="exampleModalLabel1" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
@@ -281,8 +280,9 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form th:action="@{/timeline/post-update?postId=__${post.id}__}"
+                                                            <form th:action="@{/timeline/post-update}"
                                                                   method="post">
+                                                                <input type="hidden" th:value="${post.id}" name="postId">
                                                                 <div class="modal-body">
                                                                     <p><input type="text" name="content"
                                                                               style="width: 400px">&ensp;Content</p>
