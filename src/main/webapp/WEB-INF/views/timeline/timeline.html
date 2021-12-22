@@ -284,9 +284,8 @@
                                                                   method="post">
                                                                 <input type="hidden" th:value="${post.id}" name="postId">
                                                                 <div class="modal-body">
-                                                                    <p><input type="text" name="content"
-                                                                              style="width: 400px">&ensp;Content</p>
-                                                                    <p><input type="text" name="image" style="width: 400px">&ensp;Image
+                                                                    <p><input type="text" name="content" style="width: 400px" th:value="${post.content}">&ensp;Content</p>
+                                                                    <p><input type="text" name="image" style="width: 400px" th:value="${post.image}">&ensp;Image
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">
