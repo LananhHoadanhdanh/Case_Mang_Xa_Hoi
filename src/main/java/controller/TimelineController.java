@@ -15,10 +15,13 @@ import service.user.IUserService;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/timeline")
 public class TimelineController {
+    @Autowired
+    private IUserService userService;
     @Autowired
     private IImageService imageService;
     @Autowired
@@ -31,18 +34,26 @@ public class TimelineController {
     private ICommentService commentService;
 
     @GetMapping("")
-    public String showTimeLine(Model model){
-        User user1 = (User) httpSession.getAttribute("user");
-        if (user1 != null) {
-            model.addAttribute("user", user1);
-            Iterable<Post> posts = postService.findAllByUser(user1.getId());
-            model.addAttribute("posts", posts);
-            ImageUser imageUser = imageUseService.findByUser(user1.getId());
+    public String showTimeLine(Model model, Long userId){
+        User userAcc = (User) httpSession.getAttribute("user");
+        if (userAcc != null) {
+            model.addAttribute("userAcc", userAcc);
+
+            User otherUser = userService.findById(userId).get();
+            model.addAttribute("otherUser", otherUser);
+
+            ImageUser imageUser = imageUseService.findByUser(otherUser.getId());
             model.addAttribute("imageUser", imageUser);
+
+            Iterable<Post> posts = postService.findAllByUser(otherUser.getId());
+            model.addAttribute("posts", posts);
+
             Iterable<Comment> comments = commentService.findAll();
             model.addAttribute("comments", comments);
+
             Iterable<ImageUser> imageUsers = imageUseService.findAll();
             model.addAttribute("imageUsers", imageUsers);
+
             return "timeline/timeline";
         } return "redirect:/login";
     }
@@ -54,7 +65,7 @@ public class TimelineController {
         post.setDateTime(LocalDateTime.now());
         postService.save(post);
         imageService.save(new Image(post.getImage(), post.getId(), user1));
-        return "redirect:/timeline";
+        return "redirect:/timeline?userId=" + user1.getId();
     }
 
     @PostMapping("/update-post")
@@ -62,7 +73,7 @@ public class TimelineController {
         User user1 = (User) httpSession.getAttribute("user");
         postService.save(post);
         post.setUser(user1);
-        return "redirect:/timeline";
+        return "redirect:/timeline?userId=" + user1.getId();
     }
 
     @PostMapping("/post-comment")
@@ -71,17 +82,27 @@ public class TimelineController {
         Post post = postService.findById(postId).get();
         Comment comment1 = new Comment(comment, LocalDateTime.now(), user1, post);
         commentService.save(comment1);
-        return "redirect:/timeline";
+        return "redirect:/timeline?userId=" + user1.getId();
     }
 
     @PostMapping("post-update")
-    private String updatePost(Long postId, String content) {
+    private String updatePost(Model model, Long postId, String content, String image) {
+        User user1 = (User) httpSession.getAttribute("user");
         Post post = postService.findById(postId).get();
+        model.addAttribute("postUp", post);
         post.setContent(content);
+        post.setImage(image);
         postService.save(post);
-        return "redirect:/timeline";
+        return "redirect:/timeline?userId=" + user1.getId();
     }
-
+    @GetMapping("post-delete")
+    private String deletePost(Long postId) {
+        User user1 = (User) httpSession.getAttribute("user");
+        Post post = postService.findById(postId).get();
+        post.setStatus(0);
+        postService.save(post);
+        return "redirect:/timeline?userId=" + user1.getId();
+    }
 
 
 }

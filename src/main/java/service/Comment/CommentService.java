@@ -34,4 +34,5 @@ commentRepository.deleteById(id);
     public Iterable<Comment> findAllByPostId(Long id) {
         return commentRepository.findAllByPostId(id);
     }
+
 }
