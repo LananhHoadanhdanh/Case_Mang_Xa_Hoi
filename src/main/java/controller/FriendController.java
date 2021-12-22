@@ -61,9 +61,11 @@ public class FriendController {
         List<User> isFriend = new ArrayList<>();
         List<User> notIsFriend = new ArrayList<>();
         List<User> waiting = new ArrayList<>();
+        List<User> answer = new ArrayList<>();
         Iterable<User> friendList = userService.findAllByFullNameContaining(searchName);
         boolean check = false;
         boolean check1 = false;
+        boolean check2 = false;
         for(User user:friendList){
             if(user.getId() != user1.getId()){
                 userList.add(user);
@@ -75,21 +77,29 @@ public class FriendController {
                     check = true;
                 } else if(Objects.equals(user.getId(), friend.getUser().getId()) && friend.getStatus() == 2){
                     check1 = true;
+                } else if(Objects.equals(user.getId(), friend.getUser().getId()) && friend.getStatus() == 3){
+                    check2 = true;
                 }
             }
             if(check && !check1){
                 isFriend.add(user);
             } else if(check1) {
                 waiting.add(user);
+            } else if(check2) {
+                answer.add(user);
             } else {
                 notIsFriend.add(user);
             }
+            check = false;
+            check1 = false;
+            check2 = false;
         }
         for(User user2: userList){
             imageUserList.add(imageUseService.findByUserIdAndStatus(user2.getId()));
         }
         model.addAttribute("isFriend",isFriend);
         model.addAttribute("waiting",waiting);
+        model.addAttribute("answer",answer);
         model.addAttribute("notIsFriend",notIsFriend);
         model.addAttribute("imgUser",imageUser);
         model.addAttribute("imgFriend",imageUserList);
@@ -112,9 +122,11 @@ public class FriendController {
         List<User> isFriend = new ArrayList<>();
         List<User> notIsFriend = new ArrayList<>();
         List<User> waiting = new ArrayList<>();
+        List<User> answer = new ArrayList<>();
         Iterable<User> friendList = userService.findAllByFullNameContaining(searchName);
         boolean check = false;
         boolean check1 = false;
+        boolean check2 = false;
         for(User user3:friendList){
             if(user3.getId() != user1.getId()){
                 userList.add(user3);
@@ -126,23 +138,29 @@ public class FriendController {
                     check = true;
                 } else if(Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 2){
                     check1 = true;
+                } else if(Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 3){
+                    check2 = true;
                 }
             }
             if(check && !check1){
                 isFriend.add(user4);
             } else if(check1) {
                 waiting.add(user4);
+            } else if(check2) {
+                answer.add(user4);
             } else {
                 notIsFriend.add(user4);
             }
             check = false;
             check1 = false;
+            check2 = false;
         }
         for(User user2: userList){
             imageUserList.add(imageUseService.findByUserIdAndStatus(user2.getId()));
         }
         model.addAttribute("isFriend",isFriend);
         model.addAttribute("waiting",waiting);
+        model.addAttribute("answer",answer);
         model.addAttribute("notIsFriend",notIsFriend);
         model.addAttribute("imgUser",imageUser);
         model.addAttribute("imgFriend",imageUserList);
@@ -163,9 +181,11 @@ public class FriendController {
         List<User> isFriend = new ArrayList<>();
         List<User> notIsFriend = new ArrayList<>();
         List<User> waiting = new ArrayList<>();
+        List<User> answer = new ArrayList<>();
         Iterable<User> friendList = userService.findAllByFullNameContaining(searchName);
         boolean check = false;
         boolean check1 = false;
+        boolean check2 = false;
         for(User user3:friendList){
             if(user3.getId() != user1.getId()){
                 userList.add(user3);
@@ -177,15 +197,22 @@ public class FriendController {
                     check = true;
                 } else if(Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 2){
                     check1 = true;
+                } else if(Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 3){
+                    check2 = true;
                 }
             }
             if(check && !check1){
                 isFriend.add(user4);
             } else if(check1) {
                 waiting.add(user4);
+            } else if(check2) {
+                answer.add(user4);
             } else {
                 notIsFriend.add(user4);
             }
+            check = false;
+            check1 = false;
+            check2 = false;
         }
         for(User user2: userList){
             imageUserList.add(imageUseService.findByUserIdAndStatus(user2.getId()));
@@ -194,6 +221,7 @@ public class FriendController {
         model.addAttribute("waiting",waiting);
         model.addAttribute("notIsFriend",notIsFriend);
         model.addAttribute("imgUser",imageUser);
+        model.addAttribute("answer",answer);
         model.addAttribute("imgFriend",imageUserList);
         return "newsfeed/newsfeed-people-nearby";
     }
@@ -212,9 +240,11 @@ public class FriendController {
         List<User> isFriend = new ArrayList<>();
         List<User> notIsFriend = new ArrayList<>();
         List<User> waiting = new ArrayList<>();
+        List<User> answer = new ArrayList<>();
         Iterable<User> friendList = userService.findAllByFullNameContaining(searchName);
         boolean check = false;
         boolean check1 = false;
+        boolean check2 = false;
         for(User user3:friendList){
             if(user3.getId() != user1.getId()){
                 userList.add(user3);
@@ -226,15 +256,22 @@ public class FriendController {
                     check = true;
                 } else if(Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 2){
                     check1 = true;
+                } else if(Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 3){
+                    check2 = true;
                 }
             }
             if(check && !check1){
                 isFriend.add(user4);
             } else if(check1) {
                 waiting.add(user4);
+            } else if(check2) {
+                answer.add(user4);
             } else {
                 notIsFriend.add(user4);
             }
+            check = false;
+            check1 = false;
+            check2 = false;
         }
         for(User user2: userList){
             imageUserList.add(imageUseService.findByUserIdAndStatus(user2.getId()));
@@ -243,6 +280,7 @@ public class FriendController {
         model.addAttribute("waiting",waiting);
         model.addAttribute("notIsFriend",notIsFriend);
         model.addAttribute("imgUser",imageUser);
+        model.addAttribute("answer",answer);
         model.addAttribute("imgFriend",imageUserList);
         return "newsfeed/newsfeed-people-nearby";
     }
@@ -259,5 +297,164 @@ public class FriendController {
         model.addAttribute("imgUser",imageUser);
         model.addAttribute("friendS",friendList);
         return "newsfeed/newsfeed-friendRequest";
+    }
+    @GetMapping("accept")
+    public String accept(Model model, Long idFriend){
+        User user1 = (User) httpSession.getAttribute("user");
+        Friend friend = friendService.findFriendByIdUserAndIdFriendOfUser1(idFriend,user1.getId());
+        Friend friend2 = friendService.findFriendByIdUserAndIdFriendOfUser1(user1.getId(),idFriend);
+        friend.setStatus(1);
+        friend2.setStatus(1);
+        friendService.save(friend);
+        friendService.save(friend2);
+        ImageUser imageUser = imageUseService.findByUserIdAndStatus(user1.getId());
+        List<Friend> friendList = friendService.findAllFriendAddById(user1.getId());
+        List<ImageUser> imageUserList = new ArrayList<>();
+        for(Friend friend3:friendList){
+            imageUserList.add(imageUseService.findByUserIdAndStatus(friend3.getUser().getId()));
+        }
+        model.addAttribute("imgFriend",imageUserList);
+        model.addAttribute("imgUser",imageUser);
+        model.addAttribute("friendS",friendList);
+        return "newsfeed/newsfeed-friendRequest";
+    }
+    @GetMapping("delete")
+    public String delete(Model model, Long idFriend){
+        User user1 = (User) httpSession.getAttribute("user");
+        Friend friend = friendService.findFriendByIdUserAndIdFriendOfUser1(idFriend,user1.getId());
+        Friend friend2 = friendService.findFriendByIdUserAndIdFriendOfUser1(user1.getId(),idFriend);
+        friendService.remove(friend.getId());
+        friendService.remove(friend2.getId());
+        ImageUser imageUser = imageUseService.findByUserIdAndStatus(user1.getId());
+        List<Friend> friendList = friendService.findAllFriendAddById(user1.getId());
+        List<ImageUser> imageUserList = new ArrayList<>();
+        for(Friend friend3:friendList){
+            imageUserList.add(imageUseService.findByUserIdAndStatus(friend3.getUser().getId()));
+        }
+        model.addAttribute("imgFriend",imageUserList);
+        model.addAttribute("imgUser",imageUser);
+        model.addAttribute("friendS",friendList);
+        return "newsfeed/newsfeed-friendRequest";
+    }
+
+    @PostMapping("/acceptSearch")
+    public String acceptSearch(Long idFriend, Model model){
+        String searchName = (String) httpSession.getAttribute("searchName");
+        User user1 = (User) httpSession.getAttribute("user");
+        Friend friend = friendService.findFriendByIdUserAndIdFriendOfUser1(idFriend,user1.getId());
+        Friend friend2 = friendService.findFriendByIdUserAndIdFriendOfUser1(user1.getId(),idFriend);
+        friend.setStatus(1);
+        friend2.setStatus(1);
+        friendService.save(friend);
+        friendService.save(friend2);
+        ImageUser imageUser = imageUseService.findByUserIdAndStatus(user1.getId());
+        List<ImageUser> imageUserList = new ArrayList<>();
+        List<Friend> listFriendUser1 = friendService.findAllFriend(user1.getId());
+        List<User> userList = new ArrayList<>();
+        List<User> isFriend = new ArrayList<>();
+        List<User> notIsFriend = new ArrayList<>();
+        List<User> waiting = new ArrayList<>();
+        List<User> answer = new ArrayList<>();
+        Iterable<User> friendList = userService.findAllByFullNameContaining(searchName);
+        boolean check = false;
+        boolean check1 = false;
+        boolean check2 = false;
+        for(User user3:friendList){
+            if(user3.getId() != user1.getId()){
+                userList.add(user3);
+            }
+        }
+        for(User user4:userList){
+            for(Friend friend1:listFriendUser1){
+                if (Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 1 ) {
+                    check = true;
+                } else if(Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 2){
+                    check1 = true;
+                } else if(Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 3){
+                    check2 = true;
+                }
+            }
+            if(check && !check1){
+                isFriend.add(user4);
+            } else if(check1) {
+                waiting.add(user4);
+            } else if(check2) {
+                answer.add(user4);
+            } else {
+                notIsFriend.add(user4);
+            }
+            check = false;
+            check1 = false;
+            check2 = false;
+        }
+        for(User user2: userList){
+            imageUserList.add(imageUseService.findByUserIdAndStatus(user2.getId()));
+        }
+        model.addAttribute("isFriend",isFriend);
+        model.addAttribute("waiting",waiting);
+        model.addAttribute("notIsFriend",notIsFriend);
+        model.addAttribute("imgUser",imageUser);
+        model.addAttribute("answer",answer);
+        model.addAttribute("imgFriend",imageUserList);
+        return "newsfeed/newsfeed-people-nearby";
+    }
+    @PostMapping("/deleteSearch")
+    public String deleteSearch(Long idFriend, Model model){
+        String searchName = (String) httpSession.getAttribute("searchName");
+        User user1 = (User) httpSession.getAttribute("user");
+        Friend friend = friendService.findFriendByIdUserAndIdFriendOfUser1(idFriend,user1.getId());
+        Friend friend2 = friendService.findFriendByIdUserAndIdFriendOfUser1(user1.getId(),idFriend);
+        friendService.remove(friend.getId());
+        friendService.remove(friend2.getId());
+        ImageUser imageUser = imageUseService.findByUserIdAndStatus(user1.getId());
+        List<ImageUser> imageUserList = new ArrayList<>();
+        List<Friend> listFriendUser1 = friendService.findAllFriend(user1.getId());
+        List<User> userList = new ArrayList<>();
+        List<User> isFriend = new ArrayList<>();
+        List<User> notIsFriend = new ArrayList<>();
+        List<User> waiting = new ArrayList<>();
+        List<User> answer = new ArrayList<>();
+        Iterable<User> friendList = userService.findAllByFullNameContaining(searchName);
+        boolean check = false;
+        boolean check1 = false;
+        boolean check2 = false;
+        for(User user3:friendList){
+            if(user3.getId() != user1.getId()){
+                userList.add(user3);
+            }
+        }
+        for(User user4:userList){
+            for(Friend friend1:listFriendUser1){
+                if (Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 1 ) {
+                    check = true;
+                } else if(Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 2){
+                    check1 = true;
+                } else if(Objects.equals(user4.getId(), friend1.getUser().getId()) && friend1.getStatus() == 3){
+                    check2 = true;
+                }
+            }
+            if(check && !check1){
+                isFriend.add(user4);
+            } else if(check1) {
+                waiting.add(user4);
+            } else if(check2) {
+                answer.add(user4);
+            } else {
+                notIsFriend.add(user4);
+            }
+            check = false;
+            check1 = false;
+            check2 = false;
+        }
+        for(User user2: userList){
+            imageUserList.add(imageUseService.findByUserIdAndStatus(user2.getId()));
+        }
+        model.addAttribute("isFriend",isFriend);
+        model.addAttribute("waiting",waiting);
+        model.addAttribute("notIsFriend",notIsFriend);
+        model.addAttribute("imgUser",imageUser);
+        model.addAttribute("answer",answer);
+        model.addAttribute("imgFriend",imageUserList);
+        return "newsfeed/newsfeed-people-nearby";
     }
 }

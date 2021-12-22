@@ -43,10 +43,7 @@ public class User {
 
     @OneToMany
     private List<ImageUser> imgUrl;
-<<<<<<< HEAD
 
-=======
->>>>>>> a47091054f40aa6a7903679eaf8cb9add985452c
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
 

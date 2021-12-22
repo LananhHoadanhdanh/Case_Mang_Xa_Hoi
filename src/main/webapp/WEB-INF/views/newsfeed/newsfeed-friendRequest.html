@@ -235,8 +235,14 @@
                                                  alt="user" class="profile-photo-lg"/>
                                         </th:block>
                                         <div class="friend-info ">
-                                            <button class="pull-right">Delete</button>
-                                            <button class="pull-right">Add</button>
+                                            <form method="get" action="/delete">
+                                                <input type="hidden" name="idFriend" th:value="${f.getUser().id}">
+                                                <button class="pull-right">Delete</button>
+                                            </form>
+                                            <form method="get" action="/accept">
+                                                <input type="hidden" name="idFriend" th:value="${f.getUser().id}">
+                                                <button class="pull-right">Add</button>
+                                            </form>
                                             <h5><a href="timeline.html" class="profile-link"
                                                    th:text="${f.getUser().fullName}"></a>
                                             </h5>
