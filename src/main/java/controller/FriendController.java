@@ -323,6 +323,7 @@ public class FriendController {
         }
         model.addAttribute("imgFriend",imageUserList);
         model.addAttribute("imgUser",imageUser);
+        model.addAttribute("user1",user1);
         model.addAttribute("friendS",friendList);
         return "newsfeed/newsfeed-friendRequest";
     }

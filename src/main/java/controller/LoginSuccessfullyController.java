@@ -18,7 +18,7 @@ public class LoginSuccessfullyController {
     @Autowired
     private HttpSession httpSession;
 
-    @GetMapping("/successfully")
+    @PostMapping("/successfully")
     public ModelAndView checkLogin(@ModelAttribute("user") User user,@RequestParam("Email") String email,@RequestParam("password") String password){
         Optional<User> user1 = userService.findByEmailAndPassword(email, password);
         ModelAndView modelAndView;

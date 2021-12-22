@@ -138,7 +138,7 @@
                             <p class="text-muted">Be cool and join today. Meet millions</p>
 
                             <!--Register Form-->
-                            <form name="registration_form" id='registration_form' class="form-inline" action="login/register"  method="post">
+                            <form name="registration_form" id='registration_form' class="form-inline" action="/login/register"  method="post">
                                 <div class="row">
                                     <div class="form-group col-xs-6">
                                         <label for="firstname" class="sr-only">Username</label>
@@ -197,7 +197,7 @@
                             <p class="text-muted">Log into your account</p>
 
                             <!--Login Form-->
-                            <form name="Login_form" id='Login_form' th:action="@{/successfully}" >
+                            <form name="Login_form" id='Login_form' th:action="@{/successfully}" method="post" >
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <label for="my-email" class="sr-only">Email</label>
