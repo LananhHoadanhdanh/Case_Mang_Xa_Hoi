@@ -26,7 +26,7 @@ public class LoginController {
         modelAndView.addObject("newUser",new User());
         return modelAndView;
     }
-    @PostMapping("")
+    @GetMapping("/successfully")
     public ModelAndView checkLogin(@ModelAttribute("user") User user,@RequestParam("Email") String email,@RequestParam("password") String password){
         Optional<User> user1 = userService.findByEmailAndPassword(email, password);
         ModelAndView modelAndView;

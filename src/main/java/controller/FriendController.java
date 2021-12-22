@@ -39,6 +39,7 @@ public class FriendController {
 
     @GetMapping("/friend")
     public String showCreateUser(Model model,Long idU) {
+        User user1 = (User) httpSession.getAttribute("user");
         ImageUser imageUser = imageUseService.findByUserIdAndStatus(idU);
         List<Friend> friendList = friendService.findAllFriendByIdFr(idU);
         List<ImageUser> imageUserList = new ArrayList<>();
@@ -47,6 +48,7 @@ public class FriendController {
         }
         model.addAttribute("imgFriend",imageUserList);
         model.addAttribute("imgUser",imageUser);
+        model.addAttribute("user1",user1);
         model.addAttribute("friendS",friendList);
         return "newsfeed/newsfeed-friends";
     }
@@ -102,6 +104,7 @@ public class FriendController {
         model.addAttribute("answer",answer);
         model.addAttribute("notIsFriend",notIsFriend);
         model.addAttribute("imgUser",imageUser);
+        model.addAttribute("user1",user1);
         model.addAttribute("imgFriend",imageUserList);
         return "newsfeed/newsfeed-people-nearby";
     }
@@ -163,6 +166,7 @@ public class FriendController {
         model.addAttribute("answer",answer);
         model.addAttribute("notIsFriend",notIsFriend);
         model.addAttribute("imgUser",imageUser);
+        model.addAttribute("user1",user1);
         model.addAttribute("imgFriend",imageUserList);
         return "newsfeed/newsfeed-people-nearby";
     }
@@ -222,6 +226,7 @@ public class FriendController {
         model.addAttribute("notIsFriend",notIsFriend);
         model.addAttribute("imgUser",imageUser);
         model.addAttribute("answer",answer);
+        model.addAttribute("user1",user1);
         model.addAttribute("imgFriend",imageUserList);
         return "newsfeed/newsfeed-people-nearby";
     }
@@ -281,12 +286,14 @@ public class FriendController {
         model.addAttribute("notIsFriend",notIsFriend);
         model.addAttribute("imgUser",imageUser);
         model.addAttribute("answer",answer);
+        model.addAttribute("user1",user1);
         model.addAttribute("imgFriend",imageUserList);
         return "newsfeed/newsfeed-people-nearby";
     }
 
     @GetMapping("request")
     public  String requestFriend(Model model,Long idU){
+        User user1 = (User) httpSession.getAttribute("user");
         ImageUser imageUser = imageUseService.findByUserIdAndStatus(idU);
         List<Friend> friendList = friendService.findAllFriendAddById(idU);
         List<ImageUser> imageUserList = new ArrayList<>();
@@ -295,6 +302,7 @@ public class FriendController {
         }
         model.addAttribute("imgFriend",imageUserList);
         model.addAttribute("imgUser",imageUser);
+        model.addAttribute("user1",user1);
         model.addAttribute("friendS",friendList);
         return "newsfeed/newsfeed-friendRequest";
     }
@@ -395,6 +403,7 @@ public class FriendController {
         model.addAttribute("notIsFriend",notIsFriend);
         model.addAttribute("imgUser",imageUser);
         model.addAttribute("answer",answer);
+        model.addAttribute("user1",user1);
         model.addAttribute("imgFriend",imageUserList);
         return "newsfeed/newsfeed-people-nearby";
     }
@@ -453,6 +462,7 @@ public class FriendController {
         model.addAttribute("waiting",waiting);
         model.addAttribute("notIsFriend",notIsFriend);
         model.addAttribute("imgUser",imageUser);
+        model.addAttribute("user1",user1);
         model.addAttribute("answer",answer);
         model.addAttribute("imgFriend",imageUserList);
         return "newsfeed/newsfeed-people-nearby";
