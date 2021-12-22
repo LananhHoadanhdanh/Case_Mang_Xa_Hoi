@@ -26,19 +26,6 @@ public class LoginController {
         modelAndView.addObject("newUser",new User());
         return modelAndView;
     }
-    @GetMapping("/successfully")
-    public ModelAndView checkLogin(@ModelAttribute("user") User user,@RequestParam("Email") String email,@RequestParam("password") String password){
-        Optional<User> user1 = userService.findByEmailAndPassword(email, password);
-        ModelAndView modelAndView;
-        if (user1.isPresent()) { // kiểm tra xem dữ liệu có null không
-             modelAndView = new ModelAndView("newsfeed/newsfeed");
-            httpSession.setAttribute("user",user1.get());
-            modelAndView.addObject("user1",user1.get());
-        } else {
-            modelAndView = new ModelAndView("login");
-        }
-        return modelAndView;
-    }
     @GetMapping("logout")
     public ModelAndView logout(){
         httpSession.removeAttribute("user");
