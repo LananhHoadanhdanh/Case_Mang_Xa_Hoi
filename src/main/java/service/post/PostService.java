@@ -31,8 +31,8 @@ postRepository.deleteById(id);
     }
 
     @Override
-    public Iterable<Post> findAllByUserId(Long id) {
-        return postRepository.findAllByUserId(id);
+    public Iterable<Post> findAllByUser(Long id) {
+        return postRepository.findAllByUser(id);
     }
 
     @Override

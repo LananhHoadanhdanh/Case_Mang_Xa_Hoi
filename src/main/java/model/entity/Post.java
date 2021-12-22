@@ -2,8 +2,6 @@ package model.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 public class Post {
@@ -26,7 +24,6 @@ public class Post {
         this.content = content;
         this.status = status;
         this.image = image;
-        this.dateTime = LocalDateTime.now();
     }
 
     public LocalDateTime getDateTime() {
@@ -75,5 +72,17 @@ public class Post {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "Post {" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", dateTime=" + dateTime +
+                ", status=" + status +
+                ", image='" + image + '\'' +
+                ", user=" + user +
+                '}';
     }
 }
