@@ -31,4 +31,5 @@ public class ImageService implements IImageService {
     public void remove(Long id) {
         iImageRepository.deleteById(id);
     }
+
 }

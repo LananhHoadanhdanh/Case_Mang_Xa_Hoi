@@ -1,8 +1,7 @@
 package model.entity;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 public class Post {
@@ -10,26 +9,29 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-    private Date datePost;
+    private LocalDateTime dateTime;
     private int status;
+    private String image;
 
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToMany(mappedBy = "postId", fetch = FetchType.EAGER)
-    private List<Image> imgs;
-
     public Post() {
     }
 
-    public Post(String content, Date datePost, int status, User user, List<Image> imgs) {
+    public Post(String content, int status, String image) {
         this.content = content;
-        this.datePost = datePost;
         this.status = status;
-        //1 là công khai, 2 là bạn bè, 3 là riêng tư.
-        this.user = user;
-        this.imgs = imgs;
+        this.image = image;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     public int getStatus() {
@@ -56,14 +58,6 @@ public class Post {
         this.content = content;
     }
 
-    public Date getDatePost() {
-        return datePost;
-    }
-
-    public void setDatePost(Date datePost) {
-        this.datePost = datePost;
-    }
-
     public User getUser() {
         return user;
     }
@@ -72,12 +66,23 @@ public class Post {
         this.user = user;
     }
 
-    public List<Image> getImgs() {
-        return imgs;
+    public String getImage() {
+        return image;
     }
 
-    public void setImgs(List<Image> imgs) {
-        this.imgs = imgs;
+    public void setImage(String image) {
+        this.image = image;
     }
 
+    @Override
+    public String toString() {
+        return "Post {" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", dateTime=" + dateTime +
+                ", status=" + status +
+                ", image='" + image + '\'' +
+                ", user=" + user +
+                '}';
+    }
 }
