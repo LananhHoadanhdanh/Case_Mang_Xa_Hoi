@@ -14,23 +14,28 @@ public class ImageUser {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
 
     public ImageUser() {
     }
 
-    public ImageUser(int status, String urlImg,User userId) {
+    public ImageUser(int status, String urlImg) {
         this.status = status;
         this.urlImg = urlImg;
-        this.userId = userId;
     }
 
-    public User getUserId() {
-        return userId;
+    public ImageUser(int status, String urlImg, User user) {
+        this.status = status;
+        this.urlImg = urlImg;
+        this.user = user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {

@@ -48,5 +48,4 @@ public class LoginController {
         modelAndView.addObject("user",user1);
         return modelAndView;
     }
-
 }
