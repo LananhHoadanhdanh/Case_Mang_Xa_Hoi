@@ -175,71 +175,73 @@
         </div>
 
         <div id="page-contents">
-            <div class="row">
+            <div class="row" >
                 <div class="col-md-3 static">
 
                 </div>
                 <div class="col-md-7">
                     <!-- Post Create Box
                     ================================================= -->
-                    <form action="/timeline/post" method="post">
-                        <div class="create-post">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <img th:src="@{${imageUser.urlImg}}" alt="" class="profile-photo-md"/>
-                                        <textarea name="content" id="exampleTextarea" cols="40" rows="1"
-                                                  class="form-control"
-                                                  placeholder="Write what you wish"></textarea>
+                    <th:block th:if="${userAcc.id == otherUser.id}">
+                        <form action="/timeline/post" method="post">
+                            <div class="create-post">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <img th:src="@{${imageUser.urlImg}}" alt="" class="profile-photo-md"/>
+                                            <textarea name="content" id="exampleTextarea" cols="40" rows="1"
+                                                      class="form-control"
+                                                      placeholder="Write what you wish"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="tools">
-                                        <select name="status" id="status">
-                                            <option value="1">&#xf0ac; Public</option>
-                                            <option value="2">&#xf0c0; Friend</option>
-                                            <option value="3">&#xf023; Private</option>
-                                        </select>
-                                        &ensp;
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#exampleModal">
-                                            <i class="ion-images"></i></button>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1"
-                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <center>
-                                                        <div class="modal-body">
-                                                            <p><input type="text" name="image" style="width: 400px">&ensp;Your
-                                                                image</p>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="tools">
+                                            <select name="status" id="status">
+                                                <option value="1">&#xf0ac; Public</option>
+                                                <option value="2">&#xf0c0; Friend</option>
+                                                <option value="3">&#xf023; Private</option>
+                                            </select>
+                                            &ensp;
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#exampleModal">
+                                                <i class="ion-images"></i></button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Upload
+                                                                image</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
-                                                    </center>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Close
-                                                        </button>
-                                                        <button type="button" class="btn btn-primary">Save changes
-                                                        </button>
+                                                        <center>
+                                                            <div class="modal-body">
+                                                                <p><input type="text" name="image" style="width: 400px">&ensp;Your
+                                                                    image</p>
+                                                            </div>
+                                                        </center>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary">Save changes
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div> &ensp;
-                                        <button class="btn btn-primary pull-right">Publish</button>
+                                            </div> &ensp;
+                                            <button class="btn btn-primary pull-right">Publish</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-
+                        </form>
+                    </th:block>
                     <!-- Post Content
                     ================================================= -->
                     <th:block th:each="post : ${posts}">
@@ -257,41 +259,45 @@
                                         </div>
                                         <div class="reaction">
                                             <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
-                                            <a class="btn text-green"
-                                               th:href="@{/timeline/post-delete?postId=__${post.id}__}"
-                                               onclick="return confirm('Are you sure?')"><i
-                                                    class="fas fa-trash-alt"></i></a>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#exampleModal1">
-                                                <i class="fas fa-cogs"></i></button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal1" tabindex="-1"
-                                                 aria-labelledby="exampleModalLabel1" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel1">Update
-                                                                post</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                            <th:block th:if="${userAcc.id == otherUser.id}">
+                                                <a class="btn text-green"
+                                                   th:href="@{/timeline/post-delete?postId=__${post.id}__}"
+                                                   onclick="return confirm('Are you sure?')"><i
+                                                        class="fas fa-trash-alt"></i></a>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#exampleModal1">
+                                                    <i class="fas fa-cogs"></i></button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal1" tabindex="-1"
+                                                     aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel1">Update
+                                                                    post</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form th:action="@{/timeline/post-update?postId=__${post.id}__}"
+                                                                  method="post">
+                                                                <div class="modal-body">
+                                                                    <p><input type="text" name="content"
+                                                                              style="width: 400px">&ensp;Content</p>
+                                                                    <p><input type="text" name="image" style="width: 400px">&ensp;Image
+                                                                    </p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <input type="submit" class="btn btn-primary"
+                                                                           value="Save changes">
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                        <form th:action="@{/timeline/post-update?postId=__${post.id}__}"
-                                                              method="post">
-                                                            <div class="modal-body">
-                                                                <p><input type="text" name="content"
-                                                                          style="width: 400px">&ensp;Content</p>
-                                                                <p><input type="text" name="image" style="width: 400px">&ensp;Image</p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <input type="submit" class="btn btn-primary" value="Save changes">
-                                                            </div>
-                                                        </form>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </th:block>
                                         </div>
                                         <div class="line-divider"></div>
                                         <div class="post-text">
@@ -316,11 +322,10 @@
                                                 </div>
                                             </th:block>
                                         </th:block>
-
                                         <div class="post-comment">
                                             <form th:action="@{/timeline/post-comment?postId=__${post.id}__}"
                                                   method="post">
-                                                <img th:src="@{${imageUser.urlImg}}" alt="" class="profile-photo-sm"/>
+                                                <img th:src="@{${imageUserAcc.urlImg}}" alt="" class="profile-photo-sm"/>
                                                 <input name="comment" type="text" class="form-control"
                                                        placeholder="Post a comment">
                                             </form>
