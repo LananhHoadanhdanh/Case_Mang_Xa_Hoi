@@ -57,8 +57,8 @@
                            aria-expanded="false">Newsfeed <span><img src="../../../images/down-arrow.png" alt=""/></span></a>
                         <ul class="dropdown-menu newsfeed-home">
                             <li><a href="newsfeed.html">Newsfeed</a></li>
-                            <li><a th:href="@{'/request?idU=' + ${imgUser.getUserId().getId()}}">Friend request</a></li>
-                            <li><a th:href="@{'/friend?idU=' + ${imgUser.getUserId().getId()}}">My friends</a></li>
+                            <li><a th:href="@{'/request?idU=' + ${imgUser.getUser().getId()}}">Friend request</a></li>
+                            <li><a th:href="@{'/friend?idU=' + ${imgUser.getUser().getId()}}">My friends</a></li>
                             <li><a href="newsfeed-messages.html">Chatroom</a></li>
                             <li><a href="newsfeed-images.html">Images</a></li>
                             <li><a href="newsfeed-videos.html">Videos</a></li>
@@ -125,18 +125,18 @@
                 <div class="profile-card">
                     <img th:src="@{${imgUser.urlImg}}" alt="user" class="profile-photo"/>
                     <h5><a href="../timeline/timeline.html" class="text-white"><p
-                            th:text="${imgUser.userId.fullName}"></p></a></h5>
+                            th:text="${imgUser.user.fullName}"></p></a></h5>
                     <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
                 </div><!--profile card ends-->
                 <ul class="nav-news-feed">
                     <li><i class="icon ion-ios-paper"></i>
-                        <div><a href="../../../newsfeed.html">My Newsfeed</a></div>
+                        <div><a th:href="@{'/resetNewsfeed'}">My Newsfeed</a></div>
                     </li>
                     <li><i class="icon ion-ios-people"></i>
-                        <div><a th:href="@{'/request?idU=' + ${imgUser.getUserId().getId()}}">Friend request</a></div>
+                        <div><a th:href="@{'/request?idU=' + ${imgUser.getUser().getId()}}">Friend request</a></div>
                     </li>
                     <li><i class="icon ion-ios-people-outline"></i>
-                        <div><a th:href="@{'/friend?idU=' + ${imgUser.getUserId().getId()}}">Friends</a></div>
+                        <div><a th:href="@{'/friend?idU=' + ${imgUser.getUser().getId()}}">Friends</a></div>
                     </li>
                     <li><i class="icon ion-chatboxes"></i>
                         <div><a href="newsfeed-messages.html">Messages</a></div>
@@ -229,7 +229,7 @@
                                          class="img-responsive cover"/>
                                     <div class="card-info">
                                         <th:block th:each="if : ${imgFriend}">
-                                            <img th:if="${if.userId.id} == ${f.getUser().id}" th:src="@{${if.urlImg}}"
+                                            <img th:if="${if.user.id} == ${f.getUser().id}" th:src="@{${if.urlImg}}"
                                                  alt="user" class="profile-photo-lg"/>
                                         </th:block>
                                         <div class="friend-info ">
