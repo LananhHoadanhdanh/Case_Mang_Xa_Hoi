@@ -163,4 +163,11 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public ICommentService commentService() {
         return new CommentService();
     }
+<<<<<<< HEAD
+=======
+//    @Override
+//    public void addFormatters(FormatterRegistry registry) {
+//        registry.addFormatter(new TimeFormatter());
+//    }
+>>>>>>> a47091054f40aa6a7903679eaf8cb9add985452c
 }
