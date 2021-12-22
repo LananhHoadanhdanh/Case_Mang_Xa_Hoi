@@ -34,6 +34,6 @@ public class UserFormatter implements Formatter<User> {
 
     @Override
     public String print(User object, Locale locale) {
-        return "[" +object.getGender() + ", " + object.getDateOfBirth() + object.getId() + ", " +object.getAddress() + ", " +object.getFullName() + ", " + object.getNumberPhone()+", " +object.getEmail()+ "]";
+        return "[" + object.getGender() + ", " + object.getDateOfBirth() + object.getId() + ", " +object.getAddress() + ", " +object.getFullName() + ", " + object.getNumberPhone()+", " + object.getEmail() + "]";
     }
 }

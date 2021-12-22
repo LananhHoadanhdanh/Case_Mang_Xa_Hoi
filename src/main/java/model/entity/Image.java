@@ -7,7 +7,6 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long postId;
 
     @Column(nullable = false)
@@ -20,12 +19,14 @@ public class Image {
     public Image() {
     }
 
-    public Image(Long id, String s) {
+    public Image(String linkImage, Long postId) {
+        this.linkImage = linkImage;
+        this.postId = postId;
     }
 
-    public Image(Long postId, String linkImage, User user) {
-        this.postId = postId;
+    public Image(String linkImage, Long postId, User user) {
         this.linkImage = linkImage;
+        this.postId = postId;
         this.user = user;
     }
 

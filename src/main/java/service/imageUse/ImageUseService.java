@@ -1,6 +1,7 @@
 package service.imageUse;
 
 import model.entity.ImageUser;
+import model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.IImageUserRepository;
@@ -36,4 +37,10 @@ public class ImageUseService implements IImageUseService {
     public ImageUser findByUserIdAndStatus(Long idU) {
         return iImageUserRepository.findByUserIdAndStatus(idU);
     }
+
+    @Override
+    public ImageUser findByUser(Long id) {
+        return iImageUserRepository.findByUser(id);
+    }
+
 }

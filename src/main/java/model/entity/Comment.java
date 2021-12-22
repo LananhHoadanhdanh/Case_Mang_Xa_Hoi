@@ -1,6 +1,7 @@
 package model.entity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -10,36 +11,25 @@ public class Comment {
     private Long id;
 
     private String comment;
+    private LocalDateTime dateComment;
 
-    private Date dateComment;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
-    public Comment(Long id, String comment, Date dateComment, User user) {
-        this.id = id;
-        this.comment = comment;
-        this.dateComment = dateComment;
-        this.user = user;
-    }
 
-    public Comment(String comment, Date dateComment, User user, Post post) {
+
+    public Comment(String comment, LocalDateTime dateComment, User user, Post post) {
         this.comment = comment;
         this.dateComment = dateComment;
         this.user = user;
         this.post = post;
     }
 
-    public Comment(String comment, Date dateComment, User user) {
-        this.comment = comment;
-        this.dateComment = dateComment;
-        this.user = user;
-    }
-
     public Comment(){
-
     }
 
     public Post getPost() {
@@ -66,11 +56,11 @@ public class Comment {
         this.comment = comment;
     }
 
-    public Date getDateComment() {
+    public LocalDateTime getDateComment() {
         return dateComment;
     }
 
-    public void setDateComment(Date dateComment) {
+    public void setDateComment(LocalDateTime dateComment) {
         this.dateComment = dateComment;
     }
 
