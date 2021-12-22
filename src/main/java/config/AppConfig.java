@@ -172,8 +172,8 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public ICommentService commentService() {
         return new CommentService();
     }
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter(new TimeFormatter());
-    }
+//    @Override
+//    public void addFormatters(FormatterRegistry registry) {
+//        registry.addFormatter(new TimeFormatter());
+//    }
 }
