@@ -2,6 +2,7 @@ package model.entity;
 
 
 import org.hibernate.annotations.Check;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -43,6 +44,7 @@ public class User {
     @OneToMany
     private List<ImageUser> imgUrl;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
 
     public User() {
