@@ -25,7 +25,7 @@ public class LoginSuccessfullyController {
         if (user1.isPresent()) { // kiểm tra xem dữ liệu có null không
             modelAndView = new ModelAndView("newsfeed/newsfeed");
             httpSession.setAttribute("user",user1.get());
-            modelAndView.addObject("user1",user1.get());
+            modelAndView.addObject("userAcc",user1.get());
         } else {
             modelAndView = new ModelAndView("login");
         }
