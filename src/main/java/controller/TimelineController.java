@@ -94,7 +94,7 @@ public class TimelineController {
         Post post = postService.findById(postId).get();
         Comment comment1 = new Comment(comment, LocalDateTime.now(), user1, post);
         commentService.save(comment1);
-        return "redirect:/timeline?userId=" + user1.getId();
+        return "redirect:/timeline?userId=" + post.getUser().getId();
     }
 
     @PostMapping("post-update")

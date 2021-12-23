@@ -9,4 +9,5 @@ public interface IPostService extends IGeneralService<Post> {
     Iterable<Post> findAllByUser(Long id);
     Iterable<Post> findAllByUserIdPublic(Long id);
     Iterable<Post> findAllByUserIdFriend(Long id);
+    Iterable<Post> findAllAndOrderByDateTime();
 }

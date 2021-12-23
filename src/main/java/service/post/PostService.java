@@ -44,4 +44,9 @@ postRepository.deleteById(id);
     public Iterable<Post> findAllByUserIdFriend(Long id) {
         return postRepository.findAllByUserIdFriend(id);
     }
+
+    @Override
+    public Iterable<Post> findAllAndOrderByDateTime() {
+        return postRepository.findAllAndOrderByDateTime();
+    }
 }

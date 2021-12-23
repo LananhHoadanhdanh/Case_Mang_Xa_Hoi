@@ -5,7 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadImageUser {
     private MultipartFile[] files;
 
-
     public UploadImageUser() {
     }
 
