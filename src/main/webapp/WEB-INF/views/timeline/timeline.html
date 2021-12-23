@@ -254,7 +254,7 @@
                                     <img th:src="@{${imageUser.urlImg}}" alt="user" class="profile-photo-md pull-left"/>
                                     <div class="post-detail">
                                         <div class="user-info">
-                                            <h5><a href="/timeline" class="profile-link"
+                                            <h5><a th:href="@{/timeline?userId=__*{post.user.id}__}" class="profile-link"
                                                    th:text="${post.user.fullName}"></a></h5>
                                             <p class="text-muted" th:text="${post.dateTime}"></p>
                                         </div>
@@ -285,9 +285,8 @@
                                                                   method="post">
                                                                 <input type="hidden" th:value="${post.id}" name="postId">
                                                                 <div class="modal-body">
-                                                                    <p><input type="text" name="content"
-                                                                              style="width: 400px">&ensp;Content</p>
-                                                                    <p><input type="text" name="image" style="width: 400px">&ensp;Image
+                                                                    <p><input type="text" name="content" style="width: 400px" th:value="${post.content}">&ensp;Content</p>
+                                                                    <p><input type="text" name="image" style="width: 400px" th:value="${post.image}">&ensp;Image
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">

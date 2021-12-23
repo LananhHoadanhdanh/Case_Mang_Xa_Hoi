@@ -26,6 +26,7 @@ public class LoginController {
         modelAndView.addObject("newUser",new User());
         return modelAndView;
     }
+
     @GetMapping("logout")
     public ModelAndView logout(){
         httpSession.removeAttribute("user");
