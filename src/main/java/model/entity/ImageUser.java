@@ -8,9 +8,9 @@ public class ImageUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int status;
+    private int status = 1;
 
-    private String urlImg;
+    private String urlImg = "/images/default.jpg";
 
     @ManyToOne
     @JoinColumn(name = "user_id")

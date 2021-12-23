@@ -1,11 +1,13 @@
 package controller;
 
+import model.entity.ImageUser;
 import model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import service.imageUse.IImageUseService;
 import service.user.IUserService;
 
 import javax.servlet.http.HttpSession;
@@ -20,7 +22,8 @@ public class LoginController {
     private IUserService userService;
     @Autowired
     private HttpSession httpSession;
-
+    @Autowired
+    private IImageUseService imageUseService;
     @GetMapping("")
     public ModelAndView showLoginForm() {
         ModelAndView modelAndView = new ModelAndView("login");
@@ -38,6 +41,10 @@ public class LoginController {
     public ModelAndView register( User user){
         ModelAndView modelAndView = new ModelAndView("login");
         userService.save(user);
+        User newUser =  userService.findByUserName(user.getUsername()).get();
+        ImageUser imageUser = new ImageUser();
+        imageUser.setUser(newUser);
+        imageUseService.save(imageUser);
         modelAndView.addObject("newUser",new User());
         return modelAndView;
     }

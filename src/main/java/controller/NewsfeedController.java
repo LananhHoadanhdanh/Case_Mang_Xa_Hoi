@@ -43,7 +43,9 @@ public class NewsfeedController {
         User userAcc = (User) httpSession.getAttribute("user");
         if (userAcc != null) {
             model.addAttribute("userAcc", userAcc);
+
             ArrayList<Post> allPost = (ArrayList<Post>) postService.findAllAndOrderByDateTime();
+
             List<Friend> friends = friendService.findAllFriendByIdFr(userAcc.getId());
             List<User> userFriend = new ArrayList<>();
             for (Friend friend : friends) {
@@ -82,6 +84,33 @@ public class NewsfeedController {
         post.setDateTime(LocalDateTime.now());
         postService.save(post);
         imageService.save(new Image(post.getImage(), post.getId(), user1));
+        return "redirect:/newsfeed";
+    }
+
+    @PostMapping("/post-comment")
+    private String commentPost(Long postId, String comment) {
+        User user1 = (User) httpSession.getAttribute("user");
+        Post post = postService.findById(postId).get();
+        Comment comment1 = new Comment(comment, LocalDateTime.now(), user1, post);
+        commentService.save(comment1);
+        return "redirect:/newsfeed";
+    }
+
+    @PostMapping("post-update")
+    private String updatePost(Long postId, String content, String image) {
+        User user1 = (User) httpSession.getAttribute("user");
+        Post post = postService.findById(postId).get();
+        post.setContent(content);
+        post.setImage(image);
+        postService.save(post);
+        return "redirect:/newsfeed";
+    }
+    @GetMapping("post-delete")
+    private String deletePost(Long postId) {
+        User user1 = (User) httpSession.getAttribute("user");
+        Post post = postService.findById(postId).get();
+        post.setStatus(0);
+        postService.save(post);
         return "redirect:/newsfeed";
     }
 }

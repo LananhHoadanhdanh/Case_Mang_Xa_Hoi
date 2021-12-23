@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,14 +73,14 @@
                            aria-expanded="false">Timeline <span><img src="../../../images/down-arrow.png" alt=""/></span></a>
                         <ul class="dropdown-menu login">
                             <li><a th:href="@{/timeline?userId=__*{userAcc.id}__}">Timeline</a></li>
-                            <li><a href="../../../timeline-about.html">Timeline About</a></li>
-                            <li><a href="../../../timeline-album.html">Timeline Album</a></li>
-                            <li><a href="../../../timeline-friends.html">Timeline Friends</a></li>
-                            <li><a href="../../../edit-profile-basic.html">Edit: Basic Info</a></li>
-                            <li><a href="../../../edit-profile-work-edu.html">Edit: Work</a></li>
-                            <li><a href="../../../edit-profile-interests.html">Edit: Interests</a></li>
-                            <li><a href="../../../edit-profile-settings.html">Account Settings</a></li>
-                            <li><a href="../../../edit-profile-password.html">Change Password</a></li>
+                            <li><a href="../timeline/timeline-about.html">Timeline About</a></li>
+                            <li><a href="../timeline/timeline-album.html">Timeline Album</a></li>
+                            <li><a href="../timeline/timeline-friends.html">Timeline Friends</a></li>
+                            <li><a href="/edit/profile">Edit: Basic Info</a></li>
+                            <li><a href="../edit_profile/edit-profile-work-edu.html">Edit: Work</a></li>
+                            <li><a href="../edit_profile/edit-profile-interests.html">Edit: Interests</a></li>
+                            <li><a href="../edit_profile/edit-profile-settings.html">Account Settings</a></li>
+                            <li><a href="../edit_profile/edit-profile-password.html">Change Password</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
