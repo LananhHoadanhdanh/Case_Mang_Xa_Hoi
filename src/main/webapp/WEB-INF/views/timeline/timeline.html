@@ -253,7 +253,7 @@
                                     <img th:src="@{${imageUser.urlImg}}" alt="user" class="profile-photo-md pull-left"/>
                                     <div class="post-detail">
                                         <div class="user-info">
-                                            <h5><a href="/timeline" class="profile-link"
+                                            <h5><a th:href="@{/timeline?userId=__*{post.user.id}__}" class="profile-link"
                                                    th:text="${post.user.fullName}"></a></h5>
                                             <p class="text-muted" th:text="${post.dateTime}"></p>
                                         </div>

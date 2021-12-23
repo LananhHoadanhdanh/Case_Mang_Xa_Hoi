@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.geometry.Pos;
 import model.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,9 +55,12 @@ public class NewsfeedController {
             for (Post post : allPost) {
                 if (Objects.equals(post.getUser().getId(), userAcc.getId())) {
                     newsfeedPost.add(post);
-                }
-                if (userFriend.contains(post.getUser()) && post.getStatus() != 3) {
-                    newsfeedPost.add(post);
+                } else {
+                    for (User user : userFriend) {
+                        if (Objects.equals(user.getId(), post.getUser().getId())) {
+                            newsfeedPost.add(post);
+                        }
+                    }
                 }
             }
             model.addAttribute("posts", newsfeedPost);
