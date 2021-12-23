@@ -107,5 +107,9 @@ public class TimelineController {
         return "redirect:/timeline?userId=" + user1.getId();
     }
 
+    @GetMapping("mutualFriends")
+    public String mutualFriends(){
+        return "timeline/timeline-friends";
+    }
 
 }
