@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/newsfeed")
@@ -90,8 +91,8 @@ public class NewsfeedController {
     @PostMapping("/post-comment")
     private String commentPost(Long postId, String comment) {
         User user1 = (User) httpSession.getAttribute("user");
-        Post post = postService.findById(postId).get();
-        Comment comment1 = new Comment(comment, LocalDateTime.now(), user1, post);
+        Optional<Post> post = postService.findById(postId);
+        Comment comment1 = new Comment(comment, LocalDateTime.now(), user1, post.get());
         commentService.save(comment1);
         return "redirect:/newsfeed";
     }

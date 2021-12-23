@@ -52,15 +52,14 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Home <span><img src="../../../images/down-arrow.png" alt=""/></span></a>
                         <ul class="dropdown-menu newsfeed-home">
-                            <li><a href="../index.html">Landing Page 1</a></li>
-                            <li><a href="../login.html">Landing Page 2</a></li>
+                            <li><a th:href="@{'/successfully?userId=' + ${userAcc.getId()}}">Home</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Newsfeed <span><img src="../../../images/down-arrow.png" alt=""/></span></a>
                         <ul class="dropdown-menu newsfeed-home">
-                            <li><a href="newsfeed.html">Newsfeed</a></li>
+                            <li><a th:href="@{'/successfully?userId=' + ${userAcc.getId()}}">Newsfeed</a></li>
                             <li><a th:href="@{'/request?idU=' + ${userAcc.getId()}}">Friend request</a></li>
                             <li><a th:href="@{'/friend?idU=' + ${userAcc.getId()}}">My friends</a></li>
                             <li><a href="newsfeed-messages.html">Chatroom</a></li>
@@ -151,43 +150,44 @@
                     <li><i class="icon ion-ios-videocam"></i>
                         <div><a href="newsfeed-videos.html">Videos</a></div>
                     </li>
-                </ul><!--news-feed links ends-->
+                </ul>
+                <!--news-feed links ends-->
                 <div id="chat-block">
                     <div class="title">Chat online</div>
                     <ul class="online-users list-inline">
-                        <li><a href="newsfeed-messages.html" title="Linda Lohan"><img src="http://placehold.it/300x300"
+                        <li><a href="newsfeed-messages.html" title="Linda Lohan"><img src="/images/user1.jpg"
                                                                                       alt="user"
                                                                                       class="img-responsive profile-photo"/><span
                                 class="online-dot"></span></a></li>
-                        <li><a href="newsfeed-messages.html" title="Sophia Lee"><img src="http://placehold.it/300x300"
+                        <li><a href="newsfeed-messages.html" title="Sophia Lee"><img src="/images/user2.jpg"
                                                                                      alt="user"
                                                                                      class="img-responsive profile-photo"/><span
                                 class="online-dot"></span></a></li>
-                        <li><a href="newsfeed-messages.html" title="John Doe"><img src="http://placehold.it/300x300"
+                        <li><a href="newsfeed-messages.html" title="John Doe"><img src="/images/user3.jpg"
                                                                                    alt="user"
                                                                                    class="img-responsive profile-photo"/><span
                                 class="online-dot"></span></a></li>
-                        <li><a href="newsfeed-messages.html" title="Alexis Clark"><img src="http://placehold.it/300x300"
+                        <li><a href="newsfeed-messages.html" title="Alexis Clark"><img src="/images/user4.jpg"
                                                                                        alt="user"
                                                                                        class="img-responsive profile-photo"/><span
                                 class="online-dot"></span></a></li>
-                        <li><a href="newsfeed-messages.html" title="James Carter"><img src="http://placehold.it/300x300"
+                        <li><a href="newsfeed-messages.html" title="James Carter"><img src="/images/user5.jpg"
                                                                                        alt="user"
                                                                                        class="img-responsive profile-photo"/><span
                                 class="online-dot"></span></a></li>
-                        <li><a href="newsfeed-messages.html" title="Robert Cook"><img src="http://placehold.it/300x300"
+                        <li><a href="newsfeed-messages.html" title="Robert Cook"><img src="/images/user6.jpg"
                                                                                       alt="user"
                                                                                       class="img-responsive profile-photo"/><span
                                 class="online-dot"></span></a></li>
-                        <li><a href="newsfeed-messages.html" title="Richard Bell"><img src="http://placehold.it/300x300"
+                        <li><a href="newsfeed-messages.html" title="Richard Bell"><img src="/images/user7.jpg"
                                                                                        alt="user"
                                                                                        class="img-responsive profile-photo"/><span
                                 class="online-dot"></span></a></li>
-                        <li><a href="newsfeed-messages.html" title="Anna Young"><img src="http://placehold.it/300x300"
+                        <li><a href="newsfeed-messages.html" title="Anna Young"><img src="/images/user8.jpg"
                                                                                      alt="user"
                                                                                      class="img-responsive profile-photo"/><span
                                 class="online-dot"></span></a></li>
-                        <li><a href="newsfeed-messages.html" title="Julia Cox"><img src="http://placehold.it/300x300"
+                        <li><a href="newsfeed-messages.html" title="Julia Cox"><img src="/images/user9.jpg"
                                                                                     alt="user"
                                                                                     class="img-responsive profile-photo"/><span
                                 class="online-dot"></span></a></li>
@@ -199,7 +199,7 @@
             <!-- Post Create Box
                 ================================================= -->
             <div class="col-md-7">
-                <form action="/timeline/post" method="post">
+                <form action="/newsfeed/post" method="post">
                     <div class="create-post">
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
@@ -343,7 +343,7 @@
                                         </th:block>
                                     </th:block>
                                     <div class="post-comment">
-                                        <form th:action="@{/newfeed/post-comment?postId=__${post.id}__}"
+                                        <form th:action="@{/newsfeed/post-comment?postId=__${post.id}__}"
                                               method="post">
                                             <img th:src="@{${imageUserAcc.urlImg}}" alt="" class="profile-photo-sm"/>
                                             <input name="comment" type="text" class="form-control"
@@ -363,37 +363,37 @@
                 <div class="suggestions" id="sticky-sidebar">
                     <h4 class="grey">Who to Follow</h4>
                     <div class="follow-user">
-                        <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left"/>
+                        <img src="/images/user10.jpg" alt="" class="profile-photo-sm pull-left"/>
                         <div>
-                            <h5><a href="timeline.html">Diana Amber</a></h5>
+                            <h5><a href="timeline.html">Lan anh</a></h5>
                             <a href="#" class="text-green">Add friend</a>
                         </div>
                     </div>
                     <div class="follow-user">
-                        <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left"/>
+                        <img src="/images/user11.jpg" alt="" class="profile-photo-sm pull-left"/>
                         <div>
-                            <h5><a href="timeline.html">Cris Haris</a></h5>
+                            <h5><a href="timeline.html">Tuấn hên</a></h5>
                             <a href="#" class="text-green">Add friend</a>
                         </div>
                     </div>
                     <div class="follow-user">
-                        <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left"/>
+                        <img src="/images/user12.jpg" alt="" class="profile-photo-sm pull-left"/>
                         <div>
-                            <h5><a href="timeline.html">Brian Walton</a></h5>
+                            <h5><a href="timeline.html">Hương</a></h5>
                             <a href="#" class="text-green">Add friend</a>
                         </div>
                     </div>
                     <div class="follow-user">
-                        <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left"/>
+                        <img src="/images/user13.jpg" alt="" class="profile-photo-sm pull-left"/>
                         <div>
-                            <h5><a href="timeline.html">Olivia Steward</a></h5>
+                            <h5><a href="timeline.html">Hoa</a></h5>
                             <a href="#" class="text-green">Add friend</a>
                         </div>
                     </div>
                     <div class="follow-user">
-                        <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm pull-left"/>
+                        <img src="/images/user14.jpg" alt="" class="profile-photo-sm pull-left"/>
                         <div>
-                            <h5><a href="timeline.html">Sophia Page</a></h5>
+                            <h5><a href="timeline.html">Vân</a></h5>
                             <a href="#" class="text-green">Add friend</a>
                         </div>
                     </div>

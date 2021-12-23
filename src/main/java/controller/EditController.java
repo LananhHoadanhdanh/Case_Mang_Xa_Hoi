@@ -42,6 +42,17 @@ public class EditController {
         modelAndView.addObject("newUser",new User());
         User userInEdit = (User) httpSession.getAttribute("user");
         modelAndView.addObject("userInEdit",userInEdit);
+        User user1 = (User) httpSession.getAttribute("user");
+        ImageUser imageUser =  imageUseService.findByUser(user1.getId());
+        List<Friend> friendList = friendService.findAllFriendByIdFr(user1.getId());
+        List<ImageUser> imageUserList = new ArrayList<>();
+        for(Friend friend:friendList){
+            imageUserList.add(imageUseService.findByUserIdAndStatus(friend.getUser().getId()));
+        }
+        modelAndView.addObject("imgFriend",imageUserList);
+        modelAndView.addObject("imageUser",imageUser);
+        modelAndView.addObject("userAcc",user1);
+        modelAndView.addObject("friendS",friendList);
         return modelAndView;
     }
     @PostMapping("/profile")
@@ -61,7 +72,7 @@ public class EditController {
         ImageUser imageUser =  imageUseService.findByUser(user1.getId());
         imageUser.setUrlImg(fileName);
         imageUseService.save(imageUser);
-        ModelAndView modelAndView = new ModelAndView("newsfeed/newsfeed-friends");
+        ModelAndView modelAndView = new ModelAndView("newsfeed/newsfeed");
         ImageUser imageUser1 = imageUseService.findByUserIdAndStatus(user1.getId());
         List<Friend> friendList = friendService.findAllFriendByIdFr(user1.getId());
         List<ImageUser> imageUserList = new ArrayList<>();
