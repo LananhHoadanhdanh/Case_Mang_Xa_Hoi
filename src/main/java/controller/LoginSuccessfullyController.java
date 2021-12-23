@@ -42,79 +42,14 @@ public class LoginSuccessfullyController {
         Optional<User> user1 = userService.findByEmailAndPassword(email, password);
         if (user1.isPresent()) { // kiểm tra xem dữ liệu có null không
             httpSession.setAttribute("user", user1.get());
-            User userAcc = (User) httpSession.getAttribute("user");
-            if (userAcc != null) {
-                model.addAttribute("userAcc", userAcc);
-                ArrayList<Post> allPost = (ArrayList<Post>) postService.findAllAndOrderByDateTime();
-                List<Friend> friends = friendService.findAllFriendByIdFr(userAcc.getId());
-                List<User> userFriend = new ArrayList<>();
-                for (Friend friend : friends) {
-                    userFriend.add(friend.getUser());
-                }
-                ArrayList<Post> newsfeedPost = new ArrayList<>();
-                for (Post post : allPost) {
-                    if (Objects.equals(post.getUser().getId(), userAcc.getId())) {
-                        newsfeedPost.add(post);
-                    } else {
-                        for (User user3 : userFriend) {
-                            if (Objects.equals(user3.getId(), post.getUser().getId())) {
-                                newsfeedPost.add(post);
-                            }
-                        }
-                    }
-                }
-                model.addAttribute("posts", newsfeedPost);
-
-                Iterable<ImageUser> imageUsers = imageUseService.findAll();
-                model.addAttribute("imageUsers", imageUsers);
-
-                ImageUser imageUserAcc = imageUseService.findByUser(userAcc.getId());
-                model.addAttribute("imageUserAcc", imageUserAcc);
-
-                Iterable<Comment> comments = commentService.findAll();
-                model.addAttribute("comments", comments);
-                return "newsfeed/newsfeed";
-            } return "redirect:/login";
+            return "redirect:/newsfeed";
         } else {
             return "redirect:/login";
         }
     }
 
-    @GetMapping("/resetNewsfeed")
+    @GetMapping("/successfully")
     public String resetNewsfeed(Model model) {
-        User userAcc = (User) httpSession.getAttribute("user");
-        if (userAcc != null) {
-            model.addAttribute("userAcc", userAcc);
-            ArrayList<Post> allPost = (ArrayList<Post>) postService.findAllAndOrderByDateTime();
-            List<Friend> friends = friendService.findAllFriendByIdFr(userAcc.getId());
-            List<User> userFriend = new ArrayList<>();
-            for (Friend friend : friends) {
-                userFriend.add(friend.getUser());
-            }
-            ArrayList<Post> newsfeedPost = new ArrayList<>();
-            for (Post post : allPost) {
-                if (Objects.equals(post.getUser().getId(), userAcc.getId())) {
-                    newsfeedPost.add(post);
-                } else {
-                    for (User user3 : userFriend) {
-                        if (Objects.equals(user3.getId(), post.getUser().getId())) {
-                            newsfeedPost.add(post);
-                        }
-                    }
-                }
-            }
-            model.addAttribute("posts", newsfeedPost);
-
-            Iterable<ImageUser> imageUsers = imageUseService.findAll();
-            model.addAttribute("imageUsers", imageUsers);
-
-            ImageUser imageUserAcc = imageUseService.findByUser(userAcc.getId());
-            model.addAttribute("imageUserAcc", imageUserAcc);
-
-            Iterable<Comment> comments = commentService.findAll();
-            model.addAttribute("comments", comments);
-            return "newsfeed/newsfeed";
-        } return "redirect:/login";
+        return "redirect:/newsfeed";
     }
-
 }

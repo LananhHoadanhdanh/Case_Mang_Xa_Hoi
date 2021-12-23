@@ -3,6 +3,7 @@ package controller;
 import model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.user.IUserService;
@@ -26,7 +27,6 @@ public class LoginController {
         modelAndView.addObject("newUser",new User());
         return modelAndView;
     }
-
     @GetMapping("logout")
     public ModelAndView logout(){
         httpSession.removeAttribute("user");

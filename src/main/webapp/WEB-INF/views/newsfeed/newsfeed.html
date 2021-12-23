@@ -72,7 +72,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Timeline <span><img src="../../../images/down-arrow.png" alt=""/></span></a>
                         <ul class="dropdown-menu login">
-                            <li><a th:href="@{/timeline?userId=__*{user.id}__}">Timeline</a></li>
+                            <li><a th:href="@{/timeline?userId=__*{userAcc.id}__}">Timeline</a></li>
                             <li><a href="../../../timeline-about.html">Timeline About</a></li>
                             <li><a href="../../../timeline-album.html">Timeline Album</a></li>
                             <li><a href="../../../timeline-friends.html">Timeline Friends</a></li>
@@ -96,7 +96,7 @@
                             <li><a href="newsfeed-friends.html">My friends</a></li>
                             <li><a href="newsfeed-messages.html">Chatroom</a></li>
                             <li><a href="newsfeed-videos.html">Videos</a></li>
-                            <li><a th:href="@{/timeline?userId=__*{userAcc.id}__}">Timeline</a></li>
+                            <li><a th:href="@{/timeline?userId=__*{userAcc.getId()}__}">Timeline</a></li>
                             <li><a href="../../../timeline-about.html">Timeline About</a></li>
                             <li><a href="../../../timeline-album.html">Timeline Album</a></li>
                             <li><a href="../../../timeline-friends.html">Timeline Friends</a></li>
@@ -134,7 +134,7 @@
                 </div><!--profile card ends-->
                 <ul class="nav-news-feed">
                     <li><i class="icon ion-ios-paper"></i>
-                        <div><a th:href="@{'/resetNewsfeed'}">My Newsfeed</a></div>
+                        <div><a th:href="@{'/successfully?userId=' + ${userAcc.getId()}}">My Newsfeed</a></div>
                     </li>
                     <li><i class="icon ion-ios-people"></i>
                         <div><a th:href="@{'/request?idU=' + ${userAcc.getId()}}">Friend request</a></div>
@@ -336,7 +336,7 @@
                                                              class="profile-photo-sm"/>
                                                     </th:block>
                                                 </th:block>
-                                                <a href="/timeline" class="profile-link"
+                                                <a th:href="@{'/timeline?userId=' + ${comment.user.id}}" class="profile-link"
                                                    th:text="${comment.user.fullName}"></a>&ensp;&ensp;<span
                                                     th:text="${comment.comment}"></span>
                                             </div>

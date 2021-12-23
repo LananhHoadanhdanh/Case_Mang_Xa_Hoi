@@ -38,42 +38,42 @@ public class NewsfeedController {
     @Autowired
     private IFriendService friendService;
 
-//    @GetMapping("")
-//    public String showNewsfeed(Model model){
-//        User userAcc = (User) httpSession.getAttribute("user");
-//        if (userAcc != null) {
-//            model.addAttribute("userAcc", userAcc);
-//            ArrayList<Post> allPost = (ArrayList<Post>) postService.findAllAndOrderByDateTime();
-//            List<Friend> friends = friendService.findAllFriendByIdFr(userAcc.getId());
-//            List<User> userFriend = new ArrayList<>();
-//            for (Friend friend : friends) {
-//                userFriend.add(friend.getUser());
-//            }
-//            ArrayList<Post> newsfeedPost = new ArrayList<>();
-//            for (Post post : allPost) {
-//                if (Objects.equals(post.getUser().getId(), userAcc.getId())) {
-//                    newsfeedPost.add(post);
-//                } else {
-//                    for (User user : userFriend) {
-//                        if (Objects.equals(user.getId(), post.getUser().getId())) {
-//                            newsfeedPost.add(post);
-//                        }
-//                    }
-//                }
-//            }
-//            model.addAttribute("posts", newsfeedPost);
-//
-//            Iterable<ImageUser> imageUsers = imageUseService.findAll();
-//            model.addAttribute("imageUsers", imageUsers);
-//
-//            ImageUser imageUserAcc = imageUseService.findByUser(userAcc.getId());
-//            model.addAttribute("imageUserAcc", imageUserAcc);
-//
-//            Iterable<Comment> comments = commentService.findAll();
-//            model.addAttribute("comments", comments);
-//            return "newsfeed/newsfeed";
-//        } return "redirect:/login";
-//    }
+    @GetMapping("")
+    public String showNewsfeed(Model model){
+        User userAcc = (User) httpSession.getAttribute("user");
+        if (userAcc != null) {
+            model.addAttribute("userAcc", userAcc);
+            ArrayList<Post> allPost = (ArrayList<Post>) postService.findAllAndOrderByDateTime();
+            List<Friend> friends = friendService.findAllFriendByIdFr(userAcc.getId());
+            List<User> userFriend = new ArrayList<>();
+            for (Friend friend : friends) {
+                userFriend.add(friend.getUser());
+            }
+            ArrayList<Post> newsfeedPost = new ArrayList<>();
+            for (Post post : allPost) {
+                if (Objects.equals(post.getUser().getId(), userAcc.getId())) {
+                    newsfeedPost.add(post);
+                } else {
+                    for (User user : userFriend) {
+                        if (Objects.equals(user.getId(), post.getUser().getId())) {
+                            newsfeedPost.add(post);
+                        }
+                    }
+                }
+            }
+            model.addAttribute("posts", newsfeedPost);
+
+            Iterable<ImageUser> imageUsers = imageUseService.findAll();
+            model.addAttribute("imageUsers", imageUsers);
+
+            ImageUser imageUserAcc = imageUseService.findByUser(userAcc.getId());
+            model.addAttribute("imageUserAcc", imageUserAcc);
+
+            Iterable<Comment> comments = commentService.findAll();
+            model.addAttribute("comments", comments);
+            return "newsfeed/newsfeed";
+        } return "redirect:/login";
+    }
 
     @PostMapping("/post")
     public String createNewPost(Post post){
